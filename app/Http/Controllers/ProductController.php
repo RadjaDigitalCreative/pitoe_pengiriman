@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
+
     private $ongkirRepository;
     public function __construct(OngkirRepository $ongkirRepository)
     {
