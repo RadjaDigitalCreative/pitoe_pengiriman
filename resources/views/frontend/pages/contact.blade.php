@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-
+@section('title','PitoeStore || Halaman Kontak')
 @section('main-content')
     <!-- Breadcrumbs -->
     <div class="breadcrumbs">
