@@ -1,6 +1,13 @@
 @extends('frontend.layouts.master')
 @section('title','Halaman Keranjang')
 @section('main-content')
+    @php
+        function rupiah($m)
+        {
+          $rupiah = "Rp ".number_format($m,0,",",".");
+          return $rupiah;
+        }
+    @endphp
     <!-- Breadcrumbs -->
     <div class="breadcrumbs">
         <div class="container">
@@ -53,7 +60,7 @@
                                             <p class="product-des">{!!($cart['summary']) !!}</p>
                                         </td>
                                         <td class="price" data-title="Harga">
-                                            <span>${{number_format($cart['price'],2)}}</span></td>
+                                            <span>{{rupiah($cart['price'],2)}}</span></td>
                                         <td class="qty" data-title="Qty"><!-- Input Order -->
                                             <div class="input-group">
                                                 <div class="button minus">
@@ -134,7 +141,7 @@
                                 <div class="right">
                                     <ul>
                                         <li class="order_subtotal" data-price="{{Helper::totalCartPrice()}}"> Subtotal
-                                            Keranjang<span>${{number_format(Helper::totalCartPrice(),2)}}</span></li>
+                                            Keranjang<span>{{rupiah(Helper::totalCartPrice(),2)}}</span></li>
                                         {{-- <div id="shipping" style="display:none;">
                                             <li class="shipping">
                                                 Shipping {{session('shipping_price')}}
@@ -159,7 +166,7 @@
                                         @if(session()->has('coupon'))
                                             <li class="coupon_price" data-price="{{Session::get('coupon')['value']}}">
                                                 Kamu
-                                                Simpan<span>${{number_format(Session::get('coupon')['value'],2)}}</span>
+                                                Simpan<span>{{rupiah(Session::get('coupon')['value'],2)}}</span>
                                             </li>
                                         @endif
                                         @php
@@ -170,10 +177,10 @@
                                         @endphp
                                         @if(session()->has('coupon'))
                                             <li class="last" id="order_total_price">Kamu
-                                                Bayar<span>${{number_format($total_amount,2)}}</span></li>
+                                                Bayar<span>{{rupiah($total_amount,2)}}</span></li>
                                         @else
                                             <li class="last" id="order_total_price">Kamu
-                                                Bayar<span>${{number_format($total_amount,2)}}</span></li>
+                                                Bayar<span>{{rupiah($total_amount,2)}}</span></li>
                                         @endif
                                     </ul>
                                     <div class="button5">

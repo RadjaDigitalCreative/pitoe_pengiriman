@@ -96,12 +96,13 @@ class ProductController extends Controller
 
     public function edit($id)
     {
+        $get = $this->ongkirRepository->province();
         $brand=Brand::get();
         $product=Product::findOrFail($id);
         $category=Category::where('is_parent',1)->get();
         $items=Product::where('id',$id)->get();
         // return $items;
-        return view('backend.product.edit')->with('product',$product)
+        return view('backend.product.edit', compact('get'))->with('product',$product)
                     ->with('brands',$brand)
                     ->with('categories',$category)->with('items',$items);
     }

@@ -70,7 +70,7 @@ for ($k = 0; $k < count($data['rajaongkir']['results']); $k++) {
     </table>
 </div>
 <?php
-
+}
 ?>
 <script type="text/javascript">
     $('.pilih_ongkir').on('click', function () {

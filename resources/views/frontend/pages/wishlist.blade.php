@@ -1,6 +1,13 @@
 @extends('frontend.layouts.master')
 @section('title','PitoeStore || Halaman Wishlist')
 @section('main-content')
+    @php
+        function rupiah($m)
+        {
+          $rupiah = "Rp ".number_format($m,0,",",".");
+          return $rupiah;
+        }
+    @endphp
     <!-- Breadcrumbs -->
     <div class="breadcrumbs">
         <div class="container">

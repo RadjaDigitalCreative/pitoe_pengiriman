@@ -18,7 +18,7 @@
 
                 <div class="form-group">
                     <label for="summary" class="col-form-label">Summary <span class="text-danger">*</span></label>
-                    <textarea class="form-control" id="summary" name="summary">{{old('summary')}}</textarea>
+                    <textarea class="form-control" name="summary">{{old('summary')}}</textarea>
                     @error('summary')
                     <span class="text-danger">{{$message}}</span>
                     @enderror
@@ -26,7 +26,7 @@
 
                 <div class="form-group">
                     <label for="description" class="col-form-label">Description</label>
-                    <textarea class="form-control" id="description" name="description">{{old('description')}}</textarea>
+                    <textarea class="form-control"  name="description">{{old('description')}}</textarea>
                     @error('description')
                     <span class="text-danger">{{$message}}</span>
                     @enderror
@@ -60,7 +60,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="price" class="col-form-label">Price(NRS) <span class="text-danger">*</span></label>
+                    <label for="price" class="col-form-label">Price(Rp. ) <span class="text-danger">*</span></label>
                     <input id="price" type="number" name="price" placeholder="Enter price" value="{{old('price')}}"
                            class="form-control">
                     @error('price')
