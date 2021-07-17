@@ -11,11 +11,9 @@ class Product extends Controller
     {
         $data = DB::table('products')
             ->join('categories', 'products.cat_id', 'categories.id')
-            ->join('brands', 'products.brand_id', 'brands.id')
             ->select([
                 'products.*',
                 'categories.title as category_name',
-                'brands.title as brand_name',
             ])
             ->paginate(10);
 
