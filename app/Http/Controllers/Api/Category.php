@@ -12,7 +12,7 @@ class Category extends Controller
     public function index()
     {
         $data = DB::table('categories')
-            ->paginate(10);
+            ->get();
 
         return response()->json([
             'status_code' => 200,
