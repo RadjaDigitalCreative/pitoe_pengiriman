@@ -17,6 +17,7 @@ class Wishlist extends Controller
             ->select([
                 'wishlists.*',
                 'products.title as product_name',
+                'products.photo as product_image',
                 'users.name as username',
             ])
             ->get();
