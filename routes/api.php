@@ -37,6 +37,7 @@ Route::get('wishlists/get/{id}','Api\Wishlist@get');
 Route::post('wishlists/add','Api\Wishlist@add');
 Route::post('wishlists/update/qty','Api\Wishlist@qty');
 Route::post('wishlists/delete','Api\Wishlist@delete');
+Route::post('wishlists/toCart','Api\Wishlist@toCart');
 
 Route::post('login','Api\Login@index');
 Route::post('register','Api\Register@index');

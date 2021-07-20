@@ -59,6 +59,7 @@ class Wishlist extends Controller
                 if ($cart == TRUE) {
                     $data = DB::table('wishlists')
                         ->where('product_id', $request->product_id[$i])
+                        ->where('user_id' , $request->user_id[$i])
                         ->update([
                             'price' => $request->price[$i] + $cart->price,
                             'quantity' => $request->quantity[$i] + $cart->quantity,
@@ -83,7 +84,45 @@ class Wishlist extends Controller
                 'add_wishlists' => $data,
             ], 200);
         } catch (\Exception $e) {
-            $e->getMessage();
+            return response()->json($e->getMessage());
+        }
+    }
+    public function toCart(Request $request)
+    {
+        try {
+            $count = count($request->product_id);
+            for ($i = 0; $i < $count; $i++) {
+                $cart = DB::table('wishlists')->where('product_id', $request->product_id[$i])->where('user_id', $request->user_id[$i])->first();
+                $cart2 = DB::table('carts')->where('product_id', $request->product_id[$i])->where('user_id', $request->user_id[$i])->first();
+                if ($cart2 == TRUE) {
+                    $data = DB::table('carts')
+                        ->where('product_id', $request->product_id[$i])
+                        ->where('user_id' , $request->user_id[$i])
+                        ->update([
+                            'price' => $cart2->price + $cart->price,
+                            'quantity' => $cart2->quantity + $cart->quantity,
+                            'amount' => $cart2->amount + $cart->amount,
+                        ]);
+                } elseif ($cart2 == FALSE) {
+                    $data = DB::table('carts')
+                        ->insert([
+                            'product_id' => $cart->product_id,
+                            'user_id' => $cart->user_id,
+                            'price' => $cart->price,
+                            'quantity' => $cart->quantity,
+                            'amount' => $cart->amount,
+                            'created_at' => now(),
+                            'updated_at' => now(),
+                        ]);
+                }
+            }
+            return response()->json([
+                'status_code' => 201,
+                'msg' => 'success',
+                'add_wishlists_to_cart' => $data,
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage());
         }
     }
     public function qty(Request $request){
