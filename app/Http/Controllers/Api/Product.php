@@ -24,6 +24,24 @@ class Product extends Controller
         ], 200);
 
     }
+    public function get($id)
+    {
+        $data = DB::table('products')
+            ->join('categories', 'products.cat_id', 'categories.id')
+            ->select([
+                'products.*',
+                'categories.title as category_name',
+            ])
+            ->where('products.id', $id)
+            ->first();
+
+        return response()->json([
+            'status_code' => 200,
+            'msg' => 'success',
+            'products' => $data,
+        ], 200);
+
+    }
     public function review()
     {
         $data = DB::table('product_reviews')

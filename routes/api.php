@@ -19,15 +19,24 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('categories','Api\Category@index');
+Route::get('categories/get/{id}','Api\Category@get');
 Route::get('products','Api\Product@index');
+Route::get('products/get/{id}','Api\Product@get');
 Route::get('product_reviews','Api\Product@review');
 Route::get('banners','Api\Banner@index');
 Route::get('brands','Api\Brand@index');
 
 Route::get('carts','Api\Cart@index');
+Route::get('carts/get/{id}','Api\Cart@get');
 Route::post('carts/add','Api\Cart@add');
+Route::post('carts/update/qty','Api\Cart@qty');
+Route::post('carts/delete','Api\Cart@delete');
+
 Route::get('wishlists','Api\Wishlist@index');
+Route::get('wishlists/get/{id}','Api\Wishlist@get');
 Route::post('wishlists/add','Api\Wishlist@add');
+Route::post('wishlists/update/qty','Api\Wishlist@qty');
+Route::post('wishlists/delete','Api\Wishlist@delete');
 
 Route::post('login','Api\Login@index');
 Route::post('register','Api\Register@index');

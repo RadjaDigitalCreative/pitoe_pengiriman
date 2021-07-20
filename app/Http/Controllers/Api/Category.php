@@ -17,7 +17,18 @@ class Category extends Controller
         return response()->json([
             'status_code' => 200,
             'msg' => 'success',
-            'products' => $data,
+            'categories' => $data,
+        ], 200);
+    }
+    public function get($id)
+    {
+        $data = DB::table('categories')->where('id', $id)
+            ->first();
+
+        return response()->json([
+            'status_code' => 200,
+            'msg' => 'success',
+            'categories' => $data,
         ], 200);
 
     }
