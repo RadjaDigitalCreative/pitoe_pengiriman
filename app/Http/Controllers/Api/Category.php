@@ -23,7 +23,7 @@ class Category extends Controller
     public function get($id)
     {
         $data = DB::table('categories')->where('id', $id)
-            ->first();
+            ->get();
 
         return response()->json([
             'status_code' => 200,

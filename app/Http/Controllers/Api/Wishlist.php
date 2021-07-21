@@ -41,7 +41,7 @@ class Wishlist extends Controller
                 'products.photo as product_image',
                 'users.name as username',
             ])
-            ->first();
+            ->get();
 
         return response()->json([
             'status_code' => 200,
@@ -62,7 +62,7 @@ class Wishlist extends Controller
                 'products.photo as product_image',
                 'users.name as username',
             ])
-            ->first();
+            ->get();
 
         return response()->json([
             'status_code' => 200,

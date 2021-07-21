@@ -33,7 +33,7 @@ class Product extends Controller
                 'categories.title as category_name',
             ])
             ->where('products.id', $id)
-            ->first();
+            ->get();
 
         return response()->json([
             'status_code' => 200,
