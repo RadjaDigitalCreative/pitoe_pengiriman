@@ -50,6 +50,27 @@ class Cart extends Controller
         ], 200);
 
     }
+    public function user($id)
+    {
+        $data = DB::table('carts')
+            ->join('products' ,'carts.product_id', 'products.id')
+            ->join('users' ,'carts.user_id', 'users.id')
+            ->where('carts.user_id' , $id)
+            ->select([
+                'carts.*',
+                'products.title as product_name',
+                'products.photo as product_image',
+                'users.name as username',
+            ])
+            ->first();
+
+        return response()->json([
+            'status_code' => 200,
+            'msg' => 'success',
+            'carts' => $data,
+        ], 200);
+
+    }
     public function add(Request $request){
         try{
             $count = count($request->product_id);

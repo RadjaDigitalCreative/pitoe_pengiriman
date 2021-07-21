@@ -50,6 +50,27 @@ class Wishlist extends Controller
         ], 200);
 
     }
+    public function user($id)
+    {
+        $data = DB::table('wishlists')
+            ->join('products' ,'wishlists.product_id', 'products.id')
+            ->join('users' ,'wishlists.user_id', 'users.id')
+            ->where('wishlists.user_id' , $id)
+            ->select([
+                'wishlists.*',
+                'products.title as product_name',
+                'products.photo as product_image',
+                'users.name as username',
+            ])
+            ->first();
+
+        return response()->json([
+            'status_code' => 200,
+            'msg' => 'success',
+            'wishlists' => $data,
+        ], 200);
+
+    }
     public function add(Request $request)
     {
         try {
