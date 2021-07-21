@@ -75,7 +75,8 @@ class Cart extends Controller
         try{
             $count = count($request->product_id);
             for($i = 0; $i <$count; $i++){
-                $cart = DB::table('carts')->where('product_id' , $request->product_id[$i])->first();
+                $cart = DB::table('carts')->where('product_id' , $request->product_id[$i])
+                    ->where('user_id', $request->user_id[$i])->first();
                 if ($cart == TRUE ){
                     $data = DB::table('carts')
                         ->where('product_id' , $request->product_id[$i])
@@ -114,7 +115,8 @@ class Cart extends Controller
         try{
             $count = count($request->product_id);
             for($i = 0; $i <$count; $i++){
-                $cart = DB::table('carts')->where('product_id' , $request->product_id[$i])->first();
+                $cart = DB::table('carts')->where('product_id' , $request->product_id[$i])
+                    ->where('user_id', $request->user_id[$i])->first();
                 if ($cart == TRUE ){
                     $data = DB::table('carts')
                         ->where('product_id' , $request->product_id[$i])
@@ -146,7 +148,8 @@ class Cart extends Controller
         try{
             $count = count($request->product_id);
             for($i = 0; $i <$count; $i++){
-                $cart = DB::table('carts')->where('product_id' , $request->product_id[$i])->first();
+                $cart = DB::table('carts')->where('product_id' , $request->product_id[$i])
+                    ->where('user_id', $request->user_id[$i])->first();
                 if ($cart == TRUE ){
                     $data = DB::table('carts')
                         ->where('product_id' , $request->product_id[$i])
