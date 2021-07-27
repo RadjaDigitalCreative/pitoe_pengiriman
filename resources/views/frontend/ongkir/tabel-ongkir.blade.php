@@ -36,7 +36,7 @@ for ($k = 0; $k < count($data['rajaongkir']['results']); $k++) {
 ?>
 <hr>
 <div title="<?php echo strtoupper($data['rajaongkir']['results'][$k]['name']);?>" style="padding:15px">
-    <table class="table" >
+    <table class="table">
         <tr>
             <th>Jenis Layanan</th>
             <th>ETD</th>
@@ -58,7 +58,7 @@ for ($k = 0; $k < count($data['rajaongkir']['results']); $k++) {
             <td>
 
                 <div class="radio">
-                    <label><input type="radio"
+                    <label><input type="radio" kurir="<?php echo $data['rajaongkir']['results'][$k]['costs'][$l]['service'];?><?php echo $data['rajaongkir']['results'][$k]['costs'][$l]['description'];?>"
                                   tarif="<?php echo $data['rajaongkir']['results'][$k]['costs'][$l]['cost'][0]['value']; ?>"
                                   name="pilih_ongkir" class="pilih_ongkir"></label>
                 </div>
@@ -76,14 +76,17 @@ for ($k = 0; $k < count($data['rajaongkir']['results']); $k++) {
     $('.pilih_ongkir').on('click', function () {
 
         var tarif = parseInt($(this).attr("tarif"));
-        var hasil2  = "<?php echo $hasil; ?>";
+        var courier = $(this).attr("kurir");
+        var hasil2 = "<?php echo $hasil; ?>";
         var hasil3 = parseInt(tarif) + parseInt(hasil2);
+        var hasil4 = parseInt(tarif);
+        var hasil5 = courier;
 
-        var	number_string = hasil3.toString(),
-            split	= number_string.split(','),
-            sisa 	= split[0].length % 3,
-            rupiah 	= split[0].substr(0, sisa),
-            ribuan 	= split[0].substr(sisa).match(/\d{1,3}/gi);
+        var number_string = hasil3.toString(),
+            split = number_string.split(','),
+            sisa = split[0].length % 3,
+            rupiah = split[0].substr(0, sisa),
+            ribuan = split[0].substr(sisa).match(/\d{1,3}/gi);
 
         if (ribuan) {
             separator = sisa ? '.' : '';
@@ -94,6 +97,8 @@ for ($k = 0; $k < count($data['rajaongkir']['results']); $k++) {
         $('#ongkir').text(tarif);
         $('#ongkir2').text('Rp ' + rupiah);
         document.getElementById("ongkir3").value = hasil3;
+        document.getElementById("ongkir4").value = hasil4;
+        document.getElementById("courier").value = hasil5;
 
     });
     console.log('.pilih_ongkir');

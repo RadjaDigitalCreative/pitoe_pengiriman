@@ -198,6 +198,8 @@
                                                 Total Keranjang<span>{{rupiah($total_amount)}}</span></li>
                                         @endif
                                         <input type="hidden" name="total" id="ongkir3" value="">
+                                        <input type="hidden" name="shipping_amount" id="ongkir4" value="">
+                                        <input type="hidden" name="courier" id="courier" value="">
                                         <li class="last">
                                             Total Semua<span id="ongkir2"></span></li>
                                     </ul>
