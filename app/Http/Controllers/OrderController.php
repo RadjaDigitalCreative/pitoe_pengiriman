@@ -93,10 +93,10 @@ class OrderController extends Controller
         $order_data['order_number']='ORD-'.strtoupper(Str::random(10));
         $order_data['user_id']=$request->user()->id;
         if($request->shipping == 'jne'){
-            $order_data['shipping_id']=1;
+            $order_data['shipping_id']=5;
         }
 
-        $shipping=Shipping::where('id',$order_data['shipping_id'])->pluck('price');
+        $shipping=Shipping::where('id',5)->pluck('price');
         // return session('coupon')['value'];
         $order_data['sub_total']=Helper::totalCartPrice();
         $order_data['quantity']=Helper::cartCount();
