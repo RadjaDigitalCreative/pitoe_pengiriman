@@ -62,6 +62,8 @@ class Cart extends Controller
                 'carts.*',
                 'products.title as product_name',
                 'products.photo as product_image',
+                'products.weight',
+                'products.location_id',
                 'users.name as username',
             ])
             ->get();
