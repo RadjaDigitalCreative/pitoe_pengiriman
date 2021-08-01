@@ -129,6 +129,7 @@ Route::group(['prefix'=>'/admin','middleware'=>['auth','admin']],function(){
     Route::get('/message/five','MessageController@messageFive')->name('messages.five');
 
     // Order
+    Route::post('/courier/{id}','OrderController@courier')->name('order.courier');
     Route::resource('/order','OrderController');
     // Shipping
     Route::resource('/shipping','ShippingController');

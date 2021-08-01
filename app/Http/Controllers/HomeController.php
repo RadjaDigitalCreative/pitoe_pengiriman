@@ -9,6 +9,7 @@ use App\Models\ProductReview;
 use App\Models\PostComment;
 use App\Rules\MatchOldPassword;
 use Hash;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -85,8 +86,18 @@ class HomeController extends Controller
     public function orderShow($id)
     {
         $order=Order::find($id);
-        // return $order;
-        return view('user.order.show')->with('order',$order);
+        $order_details = DB::table('carts')
+        ->join('products', 'carts.product_id', 'products.id')
+        ->where('carts.order_id', $id)
+        ->select(
+            'carts.*',
+            'products.title',
+            'products.weight',
+            'products.price',
+            'products.photo'
+        )
+        ->get();
+        return view('user.order.show', compact('order_details'))->with('order',$order);
     }
     // Product Review
     public function productReviewIndex(){
@@ -220,11 +231,11 @@ class HomeController extends Controller
             'new_password' => ['required'],
             'new_confirm_password' => ['same:new_password'],
         ]);
-   
+
         User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
-   
+
         return redirect()->route('user')->with('success','Password successfully changed');
     }
 
-    
+
 }
